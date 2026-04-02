@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隨身黃仁蝦AI系統 操作手冊 v2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     封面
+     ============================================================ -->
+<div class="cover-page">
+    <div class="cover-icon">&#x1F990;</div>
+    <div class="cover-title">隨身黃仁蝦AI系統</div>
+    <div class="cover-subtitle">使用者操作手冊</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+        <strong>作者：曾慶良 主任（阿亮老師）</strong><br>
+        出版：博碩圖書公司<br>
+        <div class="cover-version">OpenClaw Edition v2.0</div>
+        <br>
+        2026 年 3 月
+    </div>
+</div>
+
+<!-- ============================================================
+     版權聲明
+     ============================================================ -->
+<div class="copyright-page page-break">
+    <div class="copyright-title">著 作 權 聲 明</div>
+
+    <div class="copyright-box">
+        <h3>版權所有 &copy; 博碩圖書公司 / 曾慶良　All Rights Reserved.</h3>
+
+        <p>
+            本手冊及所附軟體系統之全部內容，包含但不限於文字、程式碼、介面設計、流程架構、
+            圖片、圖表及相關<strong>數位創作</strong>，均為著作權人之智慧財產，受<strong>中華民國著作權法</strong>
+            及國際著作權公約之完整保護。
+        </p>
+
+        <p>
+            <strong>未經著作權人事先書面同意，嚴禁以任何形式進行以下行為：</strong>
+        </p>
+        <ul style="padding-left: 20px; line-height: 2.2;">
+            <li>影印、掃描、翻拍、截圖</li>
+            <li>數位複製、光碟燒錄、隨身碟複製</li>
+            <li>網路傳播、雲端分享、社群轉發</li>
+            <li>改作、翻譯、編輯衍生</li>
+            <li>反向工程、反編譯、反組譯</li>
+            <li>任何形式之商業或非商業性重製與散布</li>
+        </ul>
+
+        <div class="law-ref">
+            <strong>法律責任：</strong><br>
+            依據中華民國<strong>著作權法第 91 條</strong>（擅自重製）、<strong>第 92 條</strong>（擅自公開傳輸）、
+            <strong>第 93 條</strong>（侵害著作人格權），違反者將面臨<strong>最高五年有期徒刑</strong>，
+            得併科<strong>新臺幣五十萬元至一百萬元罰金</strong>。<br><br>
+            著作權人並將依<strong>第 88 條</strong>提起民事損害賠償訴訟，請求實際損害額或法定賠償金。
+        </div>
+
+        <p style="margin-top: 16px; font-weight: 700; color: #721c24; text-align: center; font-size: 12pt;">
+            本公司及作者對於任何侵權行為，必定採取法律行動，絕不寬貸。
+        </p>
+    </div>
+
+    <div class="copyright-contact">
+        <p>如需授權或有疑問，請聯絡：<strong>3a01chatgpt@gmail.com</strong></p>
+        <p style="margin-top: 8px; color: #bbb;">本手冊版本：v2.0 / 2026 年 3 月</p>
+    </div>
+</div>
+
+<!-- ============================================================
+     目錄
+     ============================================================ -->
+<div class="toc-page page-break">
+    <h1>目 錄</h1>
+    <ul class="toc-list">
+        <li class="toc-chapter">第一章　安裝前準備</li>
+        <li class="toc-item"><span class="toc-text">1.1　系統需求</span><span class="toc-dots"></span><span class="toc-page-num">4</span></li>
+        <li class="toc-item"><span class="toc-text">1.2　安裝前確認清單</span><span class="toc-dots"></span><span class="toc-page-num">4</span></li>
+        <li class="toc-item"><span class="toc-text">1.3　AI 服務金鑰申請指引</span><span class="toc-dots"></span><span class="toc-page-num">5</span></li>
+        <li class="toc-item"><span class="toc-text">1.4　通訊頻道帳號準備</span><span class="toc-dots"></span><span class="toc-page-num">6</span></li>
+
+        <li class="toc-chapter">第二章　安裝教學</li>
+        <li class="toc-item"><span class="toc-text">2.1　插入 USB 並找到啟動檔</span><span class="toc-dots"></span><span class="toc-page-num">7</span></li>
+        <li class="toc-item"><span class="toc-text">2.2　執行一鍵安裝</span><span class="toc-dots"></span><span class="toc-page-num">8</span></li>
+        <li class="toc-item"><span class="toc-text">2.3　安裝完成確認</span><span class="toc-dots"></span><span class="toc-page-num">9</span></li>
+        <li class="toc-item"><span class="toc-text">2.4　Mac 安裝教學</span><span class="toc-dots"></span><span class="toc-page-num">10</span></li>
+
+        <li class="toc-chapter">第三章　首次使用設定</li>
+        <li class="toc-item"><span class="toc-text">3.1　啟動系統與 Email 驗證</span><span class="toc-dots"></span><span class="toc-page-num">11</span></li>
+        <li class="toc-item"><span class="toc-text">3.2　設定精靈：終極密碼</span><span class="toc-dots"></span><span class="toc-page-num">11</span></li>
+        <li class="toc-item"><span class="toc-text">3.3　設定精靈：AI 服務金鑰</span><span class="toc-dots"></span><span class="toc-page-num">12</span></li>
+        <li class="toc-item"><span class="toc-text">3.4　設定精靈：通訊頻道</span><span class="toc-dots"></span><span class="toc-page-num">13</span></li>
+        <li class="toc-item"><span class="toc-text">3.5　Web 設定頁面（Config.html）</span><span class="toc-dots"></span><span class="toc-page-num">14</span></li>
+
+        <li class="toc-chapter">第四章　日常操作</li>
+        <li class="toc-item"><span class="toc-text">4.1　平常啟動流程</span><span class="toc-dots"></span><span class="toc-page-num">15</span></li>
+        <li class="toc-item"><span class="toc-text">4.2　主選單功能總覽</span><span class="toc-dots"></span><span class="toc-page-num">15</span></li>
+        <li class="toc-item"><span class="toc-text">4.3　啟動 OpenClaw AI 服務</span><span class="toc-dots"></span><span class="toc-page-num">16</span></li>
+        <li class="toc-item"><span class="toc-text">4.4　修改設定</span><span class="toc-dots"></span><span class="toc-page-num">17</span></li>
+        <li class="toc-item"><span class="toc-text">4.5　Web 管理面板（Dashboard）</span><span class="toc-dots"></span><span class="toc-page-num">17</span></li>
+        <li class="toc-item"><span class="toc-text">4.6　技能管理與 ClawHub 市集</span><span class="toc-dots"></span><span class="toc-page-num">18</span></li>
+        <li class="toc-item"><span class="toc-text">4.7　USB 安全保護說明</span><span class="toc-dots"></span><span class="toc-page-num">19</span></li>
+
+        <li class="toc-chapter">第五章　解除安裝</li>
+        <li class="toc-item"><span class="toc-text">5.1　移除本機安裝</span><span class="toc-dots"></span><span class="toc-page-num">20</span></li>
+        <li class="toc-item"><span class="toc-text">5.2　清除桌面捷徑</span><span class="toc-dots"></span><span class="toc-page-num">20</span></li>
+
+        <li class="toc-chapter">第六章　常見問題與疑難排解</li>
+        <li class="toc-item"><span class="toc-text">6.1　安裝階段問題</span><span class="toc-dots"></span><span class="toc-page-num">21</span></li>
+        <li class="toc-item"><span class="toc-text">6.2　啟動與使用問題</span><span class="toc-dots"></span><span class="toc-page-num">22</span></li>
+        <li class="toc-item"><span class="toc-text">6.3　通訊頻道問題</span><span class="toc-dots"></span><span class="toc-page-num">23</span></li>
+        <li class="toc-item"><span class="toc-text">6.4　效能與穩定性問題</span><span class="toc-dots"></span><span class="toc-page-num">23</span></li>
+
+        <li class="toc-chapter">附錄</li>
+        <li class="toc-item"><span class="toc-text">附錄 A　OpenClaw 常用操作速查表</span><span class="toc-dots"></span><span class="toc-page-num">24</span></li>
+        <li class="toc-item"><span class="toc-text">附錄 B　AI 服務提供者費用比較表</span><span class="toc-dots"></span><span class="toc-page-num">25</span></li>
+    </ul>
+</div>
+
+<!-- ============================================================
+     第一章 安裝前準備
+     ============================================================ -->
+<h1 class="chapter-title page-break">第一章　安裝前準備</h1>
+
+<h2 class="section-title">1.1　系統需求</h2>
+<p>在開始安裝之前，請確認您的電腦符合以下最低需求：</p>
+
+<table>
+    <tr><th>項目</th><th>Windows</th><th>Mac</th></tr>
+    <tr><td>作業系統</td><td>Windows 10 以上（64 位元）</td><td>macOS 12 (Monterey) 以上</td></tr>
+    <tr><td>處理器</td><td>64 位元 x86 處理器</td><td>Apple Silicon (M1+) 或 Intel</td></tr>
+    <tr><td>記憶體</td><td colspan="2" style="text-align:center;">4 GB RAM 以上（建議 8 GB）</td></tr>
+    <tr><td>儲存空間</td><td colspan="2" style="text-align:center;">500 MB 可用空間</td></tr>
+    <tr><td>網路</td><td colspan="2" style="text-align:center;">需要網路連線（呼叫 AI API）</td></tr>
+    <tr><td>USB</td><td colspan="2" style="text-align:center;">USB 3.0 連接埠（建議直接插主機板）</td></tr>
+</table>
+
+<div class="box box-success">
+    <div class="box-title">v2.0 大幅簡化！</div>
+    <p>v2.0 採用原生 Node.js + OpenClaw 架構，<strong>不再需要 WSL、Docker、虛擬化或管理員權限</strong>。
+    安裝時間從 30 分鐘縮短至 <strong>1 分鐘以內</strong>，且同時支援 Windows 和 Mac。</p>
+</div>
+
+<h2 class="section-title">1.2　安裝前確認清單</h2>
+<p>安裝前，請依序確認以下事項：</p>
+
+<ul class="checklist">
+    <li>電腦為 64 位元作業系統</li>
+    <li>有穩定的網路連線（AI 服務需要網路）</li>
+    <li>已準備好購買時綁定的 Email 地址</li>
+    <li>已備妥至少一組 AI 服務 API 金鑰（請見 1.3 節）</li>
+    <li>USB 隨身碟為原始交付版本（未被複製或修改）</li>
+</ul>
+
+<div class="box box-info">
+    <div class="box-title">首次使用也可以先跳過 API 金鑰</div>
+    <p>如果還沒有任何 API 金鑰，可以先完成安裝，之後再透過 Web 設定頁面（Config.html）或主選單設定補填。推薦先申請免費的 <strong>Groq</strong> 金鑰快速體驗。</p>
+</div>
+
+<h2 class="section-title page-break">1.3　AI 服務金鑰申請指引</h2>
+<p>隨身黃仁蝦AI系統支援 10 家 AI 服務提供者。全部選用，您可依需求和預算選擇。</p>
+
+<table>
+    <tr><th>提供者</th><th>推薦度</th><th>費用</th><th>說明</th></tr>
+    <tr>
+        <td><strong>Groq</strong></td>
+        <td style="color:#4ecca3; font-weight:700;">強力推薦</td>
+        <td>免費（有速率限制）</td>
+        <td>速度極快、免費入門首選，申請：console.groq.com</td>
+    </tr>
+    <tr>
+        <td><strong>DeepSeek</strong></td>
+        <td style="color:#4ecca3;">推薦</td>
+        <td>極低價</td>
+        <td>性價比最高的付費方案，申請：platform.deepseek.com</td>
+    </tr>
+    <tr>
+        <td><strong>Qwen（通義千問）</strong></td>
+        <td style="color:#4ecca3;">推薦</td>
+        <td>1000 次 &asymp; 60 台幣</td>
+        <td>最便宜付費方案，申請：bailian.console.aliyun.com</td>
+    </tr>
+    <tr>
+        <td><strong>OpenAI</strong></td>
+        <td>選用</td>
+        <td>付費</td>
+        <td>GPT 系列模型，申請：platform.openai.com/api-keys</td>
+    </tr>
+    <tr>
+        <td><strong>Anthropic</strong></td>
+        <td>選用</td>
+        <td>付費</td>
+        <td>Claude 系列模型，申請：console.anthropic.com</td>
+    </tr>
+    <tr>
+        <td><strong>Gemini</strong></td>
+        <td>選用</td>
+        <td>有免費額度</td>
+        <td>Google AI，申請：aistudio.google.com/apikey</td>
+    </tr>
+    <tr>
+        <td><strong>OpenRouter</strong></td>
+        <td>選用</td>
+        <td>依模型</td>
+        <td>一個 Key 可用多種模型，申請：openrouter.ai</td>
+    </tr>
+    <tr>
+        <td><strong>Mistral</strong></td>
+        <td>選用</td>
+        <td>付費</td>
+        <td>歐洲開源模型，申請：console.mistral.ai</td>
+    </tr>
+    <tr>
+        <td><strong>MiniMax</strong></td>
+        <td>選用</td>
+        <td>付費</td>
+        <td>多模態 AI（語音/影片/圖片），申請：platform.minimaxi.com</td>
+    </tr>
+    <tr>
+        <td><strong>Ollama</strong></td>
+        <td>選用</td>
+        <td>完全免費</td>
+        <td>本地模型，不需 API Key，下載：ollama.ai</td>
+    </tr>
+</table>
+
+<div class="box box-info">
+    <div class="box-title">省錢建議</div>
+    <p>初次使用建議先申請 <strong>Groq</strong>（免費）即可開始體驗。
+    需要大量使用時再加入 <strong>DeepSeek</strong>（最便宜付費方案）或 <strong>Qwen</strong>。</p>
+</div>
+
+<h2 class="section-title">1.4　通訊頻道帳號準備</h2>
+<p>系統支援四種通訊頻道整合，讓 AI 助手可以透過您慣用的通訊軟體回應訊息。全部選用，不需要的可以略過。</p>
+
+<table>
+    <tr><th>頻道</th><th>需準備的資訊</th><th>申請位置</th></tr>
+    <tr>
+        <td><strong>LINE</strong></td>
+        <td>Channel ID、Channel Secret、Channel Access Token</td>
+        <td>developers.line.biz &gt; Messaging API</td>
+    </tr>
+    <tr>
+        <td><strong>Telegram</strong></td>
+        <td>Bot Token、允許的 User ID</td>
+        <td>Telegram 搜尋 @BotFather 建立 Bot<br>搜尋 @userinfobot 取得 User ID</td>
+    </tr>
+    <tr>
+        <td><strong>Discord</strong></td>
+        <td>Bot Token、Channel ID</td>
+        <td>discord.com/developers &gt; Applications</td>
+    </tr>
+    <tr>
+        <td><strong>WhatsApp</strong></td>
+        <td>手機已安裝 WhatsApp</td>
+        <td>啟動後系統會產生 QR Code 供掃碼</td>
+    </tr>
+</table>
+
+<div class="box box-info">
+    <div class="box-title">不確定要用哪個？</div>
+    <p>如果您在台灣，<strong>LINE</strong> 是最多人使用的通訊軟體。如果不需要通訊整合，全部跳過也完全沒問題，之後隨時可以從 Web 設定頁面或主選單補填。</p>
+</div>
+
+<!-- ============================================================
+     第二章 安裝教學
+     ============================================================ -->
+<h1 class="chapter-title page-break">第二章　安裝教學（Windows）</h1>
+
+<p>安裝過程極為快速，<strong>不需要管理員權限</strong>，全程約 1 分鐘即可完成。</p>
+
+<div class="flow-steps">
+    <span class="flow-step">插入 USB</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">雙擊安裝檔</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">等待複製</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">完成!</span>
+</div>
+
+<h2 class="section-title">2.1　插入 USB 並找到啟動檔</h2>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">1</span>
+        <span class="step-title">將隨身黃仁蝦AI USB 插入電腦</span>
+    </div>
+    <div class="step-content">
+        <p>請將 USB 直接插入電腦主機板上的 USB 孔。避免使用 USB Hub 或延長線，以確保穩定的連線。</p>
+    </div>
+</div>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">2</span>
+        <span class="step-title">開啟 USB 磁碟機</span>
+    </div>
+    <div class="step-content">
+        <p>開啟「檔案總管」，在左側找到 USB 磁碟機。您會看到以下檔案：</p>
+        <div class="screenshot">
+            <div class="icon">&#x1F4C1;</div>
+            <div class="label">【截圖預留】USB 根目錄畫面</div>
+            <p>應可看到「一鍵安裝」和「點這個啟動」兩個 .bat 檔案，以及 Welcome.html 歡迎頁</p>
+        </div>
+    </div>
+</div>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">3</span>
+        <span class="step-title">先看歡迎頁面（建議）</span>
+    </div>
+    <div class="step-content">
+        <p>建議先雙擊 <code>Welcome.html</code>，瀏覽器會開啟快速上手指南，幫助您了解系統功能和 AI 模型選擇。</p>
+    </div>
+</div>
+
+<div class="box box-warning">
+    <div class="box-title">注意</div>
+    <p>如果 Windows 出現「Windows 已保護您的電腦」的 SmartScreen 警告，請點擊「其他資訊」&gt;「仍要執行」。這是正常的安全提示，並非病毒。</p>
+</div>
+
+<h2 class="section-title">2.2　執行一鍵安裝</h2>
+
+<p>找到 <code>一鍵安裝-隨身黃仁蝦AI-Windows版.bat</code> 並<strong>雙擊</strong>執行。</p>
+
+<div class="screenshot">
+    <div class="icon">&#x1F4BB;</div>
+    <div class="label">【截圖預留】PowerShell 安裝畫面</div>
+    <p>顯示「隨身黃仁蝦AI系統 本機安裝」標題</p>
+</div>
+
+<p>安裝程式會自動執行以下步驟：</p>
+<ol style="padding-left: 20px; line-height: 2;">
+    <li>檢查 Node.js 和 OpenClaw 引擎</li>
+    <li>將系統檔案複製到本機（<code>%LOCALAPPDATA%\隨身黃仁蝦AI系統-本機版</code>）</li>
+    <li>產生 OpenClaw 設定檔</li>
+    <li>建立桌面捷徑</li>
+</ol>
+
+<div class="box box-success">
+    <div class="box-title">不需要管理員權限！</div>
+    <p>v2.0 的安裝完全在使用者目錄內完成，<strong>不會出現 UAC 權限確認對話框</strong>，也不需要 IT 管理員協助。公司電腦也能輕鬆安裝。</p>
+</div>
+
+<h2 class="section-title page-break">2.3　安裝完成確認</h2>
+
+<p>安裝成功後，您會看到以下訊息：</p>
+
+<div class="command-block">
+安裝完成。
+本機安裝位置：C:\Users\您的帳號\AppData\Local\隨身黃仁蝦AI系統-本機版
+之後請插入 USB，再雙擊「點這個啟動-隨身黃仁蝦AI-Windows.bat」。
+</div>
+
+<p>同時，桌面會出現一個新的捷徑檔案：</p>
+
+<div class="screenshot">
+    <div class="icon">&#x1F5A5;</div>
+    <div class="label">【截圖預留】桌面顯示「黃仁蝦AI-本機版.bat」捷徑</div>
+</div>
+
+<div class="box box-success">
+    <div class="box-title">安裝完成！</div>
+    <p>恭喜！隨身黃仁蝦AI系統已成功安裝到您的電腦。接下來請繼續第三章進行首次設定。</p>
+</div>
+
+<table>
+    <tr><th>項目</th><th>說明</th></tr>
+    <tr><td>本機安裝位置</td><td><code>%LOCALAPPDATA%\隨身黃仁蝦AI系統-本機版</code></td></tr>
+    <tr><td>桌面捷徑</td><td>黃仁蝦AI-本機版.bat</td></tr>
+    <tr><td>AI 引擎</td><td>OpenClaw（Node.js 原生，無需 WSL）</td></tr>
+    <tr><td>安裝大小</td><td>約 100 MB</td></tr>
+</table>
+
+<h2 class="section-title page-break">2.4　Mac 安裝教學</h2>
+
+<p>v2.0 新增 Mac 支援！安裝流程與 Windows 類似，同樣快速簡單。</p>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">1</span>
+        <span class="step-title">插入 USB 並開啟</span>
+    </div>
+    <div class="step-content">
+        <p>插入 USB 後，在 Finder 中找到 USB 磁碟機。</p>
+    </div>
+</div>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">2</span>
+        <span class="step-title">雙擊「Mac-安裝.command」</span>
+    </div>
+    <div class="step-content">
+        <p>系統會自動偵測您的 Mac 是 Apple Silicon（M1/M2/M3/M4）還是 Intel，選擇對應的 Node.js 版本。</p>
+        <p>安裝位置：<code>~/.lobster-ai/</code></p>
+    </div>
+</div>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">3</span>
+        <span class="step-title">完成！</span>
+    </div>
+    <div class="step-content">
+        <p>安裝完成後，桌面會出現「黃仁蝦AI-本機版.command」捷徑。之後啟動只需要雙擊 USB 上的 <code>Mac-啟動.command</code>。</p>
+    </div>
+</div>
+
+<div class="box box-warning">
+    <div class="box-title">macOS 安全性提示</div>
+    <p>首次執行 .command 檔案時，macOS 可能會顯示「無法打開，因為它來自不明的開發者」。
+    請到「系統設定 &gt; 隱私與安全 &gt; 安全性」中點選「仍要打開」即可。系統會自動處理 macOS 的隔離標記。</p>
+</div>
+
+<!-- ============================================================
+     第三章 首次使用設定
+     ============================================================ -->
+<h1 class="chapter-title page-break">第三章　首次使用設定</h1>
+
+<p>安裝完成後的第一次啟動，系統會引導您完成設定精靈。設定完成後，日後啟動就不需要再重新設定。</p>
+
+<h2 class="section-title">3.1　啟動系統與 Email 驗證</h2>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">1</span>
+        <span class="step-title">確認 USB 已插入，雙擊啟動檔</span>
+    </div>
+    <div class="step-content">
+        <p>Windows：雙擊 USB 上的 <code>點這個啟動-隨身黃仁蝦AI-Windows.bat</code>（或桌面捷徑）</p>
+        <p>Mac：雙擊 USB 上的 <code>Mac-啟動.command</code></p>
+    </div>
+</div>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">2</span>
+        <span class="step-title">輸入 Email 進行驗證</span>
+    </div>
+    <div class="step-content">
+        <p>系統會顯示歡迎畫面，並要求您輸入購買時綁定的 Email 地址。</p>
+
+        <div class="screenshot">
+            <div class="icon">&#x1F990;</div>
+            <div class="label">【截圖預留】OpenClaw ASCII Art 歡迎畫面與 Email 輸入</div>
+        </div>
+    </div>
+</div>
+
+<div class="box box-danger">
+    <div class="box-title">重要</div>
+    <p>Email 必須與購買時綁定的完全一致。輸入錯誤將無法啟動系統。如果忘記綁定的 Email，請聯絡賣家確認。</p>
+</div>
+
+<h2 class="section-title">3.2　設定精靈：終極密碼</h2>
+
+<p>系統偵測到是首次使用，會自動進入設定精靈。第一步是設定「終極密碼」（Master Password）。</p>
+
+<div class="screenshot">
+    <div class="icon">&#x1F512;</div>
+    <div class="label">【截圖預留】設定精靈 — 終極密碼設定畫面</div>
+</div>
+
+<div class="box box-warning">
+    <div class="box-title">注意</div>
+    <p><strong>請務必牢記您的終極密碼！</strong>日後修改 API 金鑰、通訊頻道等重要設定時，都需要輸入此密碼。
+    此密碼也用於加密您的 API 金鑰，確保安全性。建議記在安全的地方。</p>
+</div>
+
+<h2 class="section-title page-break">3.3　設定精靈：AI 服務金鑰</h2>
+
+<p>接下來系統會依序詢問以下 API 金鑰（全部選填，直接按 Enter 略過）：</p>
+
+<table>
+    <tr><th>#</th><th>欄位</th><th>推薦</th><th>提示</th></tr>
+    <tr><td>1</td><td>Groq API Key</td><td style="color:#4ecca3; font-weight:700;">推薦</td><td>免費入門首選，速度極快</td></tr>
+    <tr><td>2</td><td>DeepSeek API Key</td><td style="color:#4ecca3;">推薦</td><td>最便宜的付費方案</td></tr>
+    <tr><td>3</td><td>Qwen API Key</td><td>選填</td><td>低成本付費方案</td></tr>
+    <tr><td>4</td><td>OpenAI API Key</td><td>選填</td><td>GPT 系列</td></tr>
+    <tr><td>5</td><td>Anthropic API Key</td><td>選填</td><td>Claude 系列</td></tr>
+    <tr><td>6</td><td>Gemini API Key</td><td>選填</td><td>Google AI</td></tr>
+    <tr><td>7</td><td>OpenRouter API Key</td><td>選填</td><td>多模型聚合</td></tr>
+    <tr><td>8</td><td>Mistral API Key</td><td>選填</td><td>歐洲開源模型</td></tr>
+    <tr><td>9</td><td>MiniMax API Key</td><td>選填</td><td>多模態 AI（語音/影片）</td></tr>
+    <tr><td>10</td><td>Ollama Base URL</td><td>選填</td><td>本地模型，預設 http://localhost:11434</td></tr>
+</table>
+
+<div class="box box-info">
+    <div class="box-title">小提示</div>
+    <p>不需要的欄位直接按 <code>Enter</code> 略過即可。日後隨時可以從 <strong>Web 設定頁面（Config.html）</strong> 或主選單 [5] 設定功能補填或修改。
+    API 金鑰會以 AES-256 加密儲存，確保安全。</p>
+</div>
+
+<h2 class="section-title">3.4　設定精靈：通訊頻道</h2>
+
+<p>設定 AI 助手要透過哪些通訊軟體與您互動：</p>
+
+<div class="screenshot">
+    <div class="icon">&#x1F4AC;</div>
+    <div class="label">【截圖預留】設定精靈 — 通訊頻道設定畫面</div>
+    <p>系統會先詢問「是否要設定通訊頻道？」</p>
+</div>
+
+<p>如果選擇「是」，系統會依序詢問各頻道的設定資訊：</p>
+<ul style="padding-left: 20px; line-height: 2;">
+    <li><strong>LINE：</strong>Channel ID、Channel Secret、Channel Access Token</li>
+    <li><strong>Telegram：</strong>Bot Token、允許的 User ID</li>
+    <li><strong>Discord：</strong>Bot Token、Channel ID</li>
+    <li><strong>WhatsApp：</strong>是否啟用（啟動 OpenClaw 後掃碼即可）</li>
+</ul>
+
+<div class="box box-info">
+    <div class="box-title">小提示</div>
+    <p>通訊頻道完全可以之後再設定。如果目前沒有準備好相關資訊，可以選擇「否」跳過。</p>
+</div>
+
+<h2 class="section-title page-break">3.5　Web 設定頁面（Config.html）</h2>
+
+<p>除了 PowerShell 精靈之外，v2.0 還提供了<strong>圖形化 Web 設定頁面</strong>，更直覺好用：</p>
+
+<div class="screenshot">
+    <div class="icon">&#x1F310;</div>
+    <div class="label">【截圖預留】Config.html 設定頁面</div>
+    <p>深色主題 3 步驟設定嚮導：選擇模型 → 輸入金鑰 → 完成</p>
+</div>
+
+<p>開啟方式：</p>
+<ul style="padding-left: 20px; line-height: 2;">
+    <li>直接雙擊 USB 上的 <code>Config.html</code></li>
+    <li>或從 Welcome.html 點選「設定嚮導」連結</li>
+    <li>或從主選單 [7] 開啟 Web 管理面板後操作</li>
+</ul>
+
+<div class="box box-success">
+    <div class="box-title">設定完成！</div>
+    <p>無論使用 PowerShell 精靈或 Web 頁面設定，完成後即可回到主選單選擇 [1] 開始使用 AI 服務。</p>
+</div>
+
+<!-- ============================================================
+     第四章 日常操作
+     ============================================================ -->
+<h1 class="chapter-title page-break">第四章　日常操作</h1>
+
+<h2 class="section-title">4.1　平常啟動流程</h2>
+
+<p>每次要使用隨身黃仁蝦AI時，只需要兩個步驟：</p>
+
+<div class="flow-steps">
+    <span class="flow-step">&#9312; 插入 USB</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">&#9313; 雙擊啟動檔</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">&#9314; AI 就緒！</span>
+</div>
+
+<p>系統會自動驗證 Email、啟動 OpenClaw、開啟瀏覽器。<strong>從插入 USB 到看到 AI 介面，僅需約 3 秒。</strong></p>
+
+<h2 class="section-title">4.2　主選單功能總覽</h2>
+
+<div class="screenshot">
+    <div class="icon">&#x1F4CB;</div>
+    <div class="label">【截圖預留】主選單完整畫面</div>
+</div>
+
+<table>
+    <tr><th>選項</th><th>功能</th><th>說明</th></tr>
+    <tr><td><strong>[1]</strong></td><td>啟動 AI 助手</td><td>啟動 OpenClaw 服務 + 開啟 Web UI</td></tr>
+    <tr><td><strong>[2]</strong></td><td>安裝到本機（首次）</td><td>首次安裝用，已安裝後不需再用</td></tr>
+    <tr><td><strong>[3]</strong></td><td>系統狀態</td><td>查看 Node.js / OpenClaw / Gateway / API Key 狀態</td></tr>
+    <tr><td><strong>[4]</strong></td><td>初始化 OpenClaw</td><td>首次安裝後的 OpenClaw 設定</td></tr>
+    <tr><td><strong>[5]</strong></td><td>設定（API Key / 通訊 / 密碼）</td><td>修改 AI 金鑰、通訊頻道、終極密碼</td></tr>
+    <tr><td><strong>[6]</strong></td><td>使用教學 / 案例庫</td><td>80 個使用案例瀏覽器</td></tr>
+    <tr><td><strong>[7]</strong></td><td>Web 管理面板</td><td>在瀏覽器開啟 Dashboard</td></tr>
+    <tr><td><strong>[8]</strong></td><td>技能管理</td><td>安裝 / 移除 / 查看 AI 技能</td></tr>
+    <tr><td><strong>[9]</strong></td><td>離開</td><td>關閉系統並清理背景程序</td></tr>
+</table>
+
+<h2 class="section-title page-break">4.3　啟動 OpenClaw AI 服務</h2>
+
+<h3>啟動服務</h3>
+<p>在主選單輸入 <code>1</code> 並按 Enter。系統會：</p>
+<ol style="padding-left: 20px; line-height: 2;">
+    <li>驗證 USB 授權（Device Token + HMAC 簽章）</li>
+    <li>檢查授權狀態（永久/訂閱/試用）</li>
+    <li>從 config.env 同步產生 OpenClaw 設定檔</li>
+    <li>掃描可用 port（18789-18799）</li>
+    <li>啟動 OpenClaw Gateway</li>
+    <li>自動開啟瀏覽器到 AI 介面</li>
+</ol>
+
+<div class="screenshot">
+    <div class="icon">&#x25B6;</div>
+    <div class="label">【截圖預留】OpenClaw Web UI 介面</div>
+    <p>瀏覽器會自動開啟 http://127.0.0.1:18789</p>
+</div>
+
+<h3>查看狀態</h3>
+<p>在主選單輸入 <code>3</code> 查看目前服務狀態，包括：</p>
+<ul style="padding-left: 20px; line-height: 2;">
+    <li>Node.js 版本</li>
+    <li>OpenClaw 安裝狀態</li>
+    <li>Gateway 運行狀態（含 port）</li>
+    <li>已設定的 API Key 數量</li>
+    <li>安裝模式（USB / 本機）</li>
+    <li>授權狀態（永久 / 訂閱剩餘天數 / 試用期）</li>
+    <li>已安裝技能數量</li>
+</ul>
+
+<h3>停止服務</h3>
+<p>在主選單輸入 <code>9</code> 離開系統，所有背景服務（包括 OpenClaw Gateway 和 Config Server）會自動清理。</p>
+
+<h2 class="section-title">4.4　修改設定</h2>
+
+<p>在主選單輸入 <code>5</code> 進入設定功能。系統會要求輸入<strong>終極密碼</strong>，驗證成功後顯示可修改的欄位：</p>
+
+<table>
+    <tr><th>類別</th><th>可修改欄位</th></tr>
+    <tr><td>終極密碼</td><td>MASTER_PASSWORD</td></tr>
+    <tr><td>AI 服務</td><td>Groq / DeepSeek / Qwen / OpenAI / Anthropic / Gemini / OpenRouter / Mistral / MiniMax / Ollama</td></tr>
+    <tr><td>通訊頻道</td><td>LINE（3 個欄位）/ Telegram（2 個）/ Discord（2 個）/ WhatsApp</td></tr>
+</table>
+
+<p>或者使用更方便的 <strong>Web 設定頁面（Config.html）</strong> 圖形化操作。</p>
+
+<h2 class="section-title page-break">4.5　Web 管理面板（Dashboard）</h2>
+
+<p>在主選單輸入 <code>7</code>，系統會啟動 Config Server 並開啟瀏覽器。</p>
+
+<div class="screenshot">
+    <div class="icon">&#x1F310;</div>
+    <div class="label">【截圖預留】Web Dashboard 概覽頁</div>
+    <p>瀏覽器網址：http://127.0.0.1:18788</p>
+</div>
+
+<p>Dashboard 提供四個頁面：</p>
+
+<table>
+    <tr><th>頁面</th><th>功能</th></tr>
+    <tr><td>系統狀態</td><td>Node.js / OpenClaw / Gateway 運行狀態一覽</td></tr>
+    <tr><td>API 金鑰</td><td>查看和修改 10 家 AI 服務的 API 金鑰（加密儲存）</td></tr>
+    <tr><td>通訊頻道</td><td>LINE / Telegram / Discord / WhatsApp 設定</td></tr>
+    <tr><td>進階設定</td><td>引擎類型、Port、安全設定等</td></tr>
+</table>
+
+<h2 class="section-title">4.6　技能管理與 ClawHub 市集</h2>
+
+<p>在主選單輸入 <code>8</code> 進入技能管理，提供四個功能：</p>
+
+<table>
+    <tr><th>選項</th><th>功能</th><th>說明</th></tr>
+    <tr><td>[1]</td><td>查看已安裝技能</td><td>列出所有已安裝的 AI 技能</td></tr>
+    <tr><td>[2]</td><td>安裝新技能</td><td>從 skills/import/ 資料夾匯入技能</td></tr>
+    <tr><td>[3]</td><td>移除技能</td><td>選擇並移除已安裝的技能</td></tr>
+    <tr><td>[4]</td><td>從 ClawHub 安裝</td><td>從線上技能市集搜尋安裝</td></tr>
+</table>
+
+<div class="box box-info">
+    <div class="box-title">ClawHub 技能市集</div>
+    <p>v2.0 新增線上技能市集整合！您可以：</p>
+    <ul style="padding-left: 16px; margin-top: 4px;">
+        <li>雙擊 USB 上的 <code>SkillHub.html</code> 瀏覽技能市場</li>
+        <li>或在主選單 [8] 選擇 [4] 直接輸入技能名稱安裝</li>
+        <li>或前往 <strong>clawhub.ai/skills</strong> 線上瀏覽</li>
+    </ul>
+</div>
+
+<p>系統已預裝 12 個實用技能：文案撰寫、SEO 稽核、社群內容、Email 行銷、廣告創意、內容策略、AI 圖像提示詞、AI 影片腳本、會議紀錄、提案撰寫、數據分析、競品分析。</p>
+
+<h2 class="section-title page-break">4.7　USB 安全保護說明</h2>
+
+<p>隨身黃仁蝦AI系統 v2.0 內建多層安全保護機制：</p>
+
+<table>
+    <tr><th>機制</th><th>說明</th></tr>
+    <tr><td><strong>Email 綁定</strong></td><td>每次啟動需驗證購買時綁定的 Email</td></tr>
+    <tr><td><strong>Device Token</strong></td><td>每支 USB 有唯一識別碼，複製的 USB 無法使用</td></tr>
+    <tr><td><strong>HMAC-SHA256 簽章</strong></td><td>防止 Device Token 被手動篡改（v2.0 新增）</td></tr>
+    <tr><td><strong>終極密碼</strong></td><td>修改重要設定需要密碼驗證</td></tr>
+    <tr><td><strong>AES-256 加密</strong></td><td>所有 API 金鑰以 AES-256 加密儲存（v2.0 新增）</td></tr>
+    <tr><td><strong>授權管理</strong></td><td>支援永久授權 / 訂閱制 / 試用版（v2.0 新增）</td></tr>
+    <tr><td><strong>USB 心跳檢查</strong></td><td>每 10 分鐘偵測 USB 是否仍在（跨平台）</td></tr>
+</table>
+
+<h3>USB 心跳檢查</h3>
+<p>系統啟動後，會每隔 10 分鐘檢查 USB 是否仍然插在電腦上。如果偵測不到 USB，會彈出警告視窗：</p>
+
+<div class="screenshot">
+    <div class="icon">&#x26A0;</div>
+    <div class="label">【截圖預留】USB 心跳警告（Windows MessageBox / macOS Dialog）</div>
+    <p>「隨身黃仁蝦AI需要讀取關鍵設定檔以繼續執行，請插入隨身黃仁蝦AI USB」</p>
+</div>
+
+<div class="box box-warning">
+    <div class="box-title">注意</div>
+    <p>使用期間請勿拔除 USB。如需暫時拔除，請先從主選單 [9] 離開系統。</p>
+</div>
+
+<h3>授權類型說明</h3>
+<table>
+    <tr><th>類型</th><th>說明</th></tr>
+    <tr><td><strong>永久授權 (perpetual)</strong></td><td>無到期日，買斷後永久使用</td></tr>
+    <tr><td><strong>訂閱制 (subscription)</strong></td><td>有到期日，到期後需續費才能繼續使用</td></tr>
+    <tr><td><strong>試用版 (trial)</strong></td><td>自綁定日起 30 天試用期</td></tr>
+</table>
+
+<p>您可以在主選單 [3] 查看目前的授權狀態和剩餘天數。</p>
+
+<!-- ============================================================
+     第五章 解除安裝
+     ============================================================ -->
+<h1 class="chapter-title page-break">第五章　解除安裝</h1>
+
+<p>如需從電腦移除隨身黃仁蝦AI系統，操作非常簡單（v2.0 不需要解除 WSL）：</p>
+
+<h2 class="section-title">5.1　移除本機安裝（Windows）</h2>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">1</span>
+        <span class="step-title">刪除本機安裝資料夾</span>
+    </div>
+    <div class="step-content">
+        <p>開啟檔案總管，在網址列輸入以下路徑並按 Enter：</p>
+        <div class="command-block">%LOCALAPPDATA%\隨身黃仁蝦AI系統-本機版</div>
+        <p>選取整個資料夾，按 <code>Delete</code> 刪除。</p>
+    </div>
+</div>
+
+<h3>Mac 版移除</h3>
+<p>開啟終端機，執行：</p>
+<div class="command-block">rm -rf ~/.lobster-ai</div>
+
+<h2 class="section-title">5.2　清除桌面捷徑</h2>
+
+<div class="step-card">
+    <div class="step-header">
+        <span class="step-number">2</span>
+        <span class="step-title">刪除桌面捷徑</span>
+    </div>
+    <div class="step-content">
+        <p>Windows：在桌面找到 <code>黃仁蝦AI-本機版.bat</code>，右鍵 &gt;「刪除」。</p>
+        <p>Mac：在桌面找到 <code>黃仁蝦AI-本機版.command</code>，拖到垃圾桶。</p>
+    </div>
+</div>
+
+<div class="box box-success">
+    <div class="box-title">解除安裝完成</div>
+    <p>就這麼簡單！v2.0 的解除安裝只需要刪除一個資料夾和一個捷徑。USB 上的資料不受影響，您隨時可以在其他電腦重新安裝。</p>
+</div>
+
+<!-- ============================================================
+     第六章 常見問題與疑難排解
+     ============================================================ -->
+<h1 class="chapter-title page-break">第六章　常見問題與疑難排解</h1>
+
+<h2 class="section-title">6.1　安裝階段問題</h2>
+
+<table>
+    <tr><th style="width:25%">問題</th><th style="width:30%">可能原因</th><th style="width:45%">解決方法</th></tr>
+    <tr>
+        <td>雙擊 .bat 檔沒有反應</td>
+        <td>被防毒軟體攔截</td>
+        <td>暫時關閉防毒軟體的即時防護，或將 USB 路徑加入白名單。</td>
+    </tr>
+    <tr>
+        <td>SmartScreen 警告</td>
+        <td>Windows 安全機制</td>
+        <td>點擊「其他資訊」&gt;「仍要執行」。這是正常提示，並非病毒。</td>
+    </tr>
+    <tr>
+        <td>安裝過程中斷</td>
+        <td>USB 讀取不穩</td>
+        <td>確認 USB 穩固插入（避免 Hub），重新執行安裝檔。已完成的步驟會自動跳過。</td>
+    </tr>
+    <tr>
+        <td>Mac 顯示「無法打開」</td>
+        <td>macOS Gatekeeper</td>
+        <td>系統設定 &gt; 隱私與安全 &gt; 安全性 &gt; 點選「仍要打開」。</td>
+    </tr>
+    <tr>
+        <td>中文顯示亂碼</td>
+        <td>未透過 .bat 檔啟動</td>
+        <td>.bat 檔會自動設定 UTF-8 編碼。請務必從 .bat 檔啟動，不要直接執行 .ps1 檔。</td>
+    </tr>
+</table>
+
+<h2 class="section-title page-break">6.2　啟動與使用問題</h2>
+
+<table>
+    <tr><th style="width:25%">問題</th><th style="width:30%">可能原因</th><th style="width:45%">解決方法</th></tr>
+    <tr>
+        <td>「帳號不符，無法啟動」</td>
+        <td>Email 輸入錯誤</td>
+        <td>請確認輸入的 Email 與購買時綁定的完全一致（注意大小寫）。如已忘記，請聯絡賣家。</td>
+    </tr>
+    <tr>
+        <td>「未偵測到授權 USB」</td>
+        <td>USB 未插入或 Device Token 不符</td>
+        <td>確認已插入原始 USB（非複製品）。如果是從桌面捷徑啟動，仍需要插入 USB。</td>
+    </tr>
+    <tr>
+        <td>「授權已到期」</td>
+        <td>訂閱或試用期到期</td>
+        <td>聯絡賣家續費或升級為永久授權。</td>
+    </tr>
+    <tr>
+        <td>「Device Token 完整性驗證失敗」</td>
+        <td>config.env 被手動修改</td>
+        <td>請勿手動編輯 config.env 中的 DEVICE_TOKEN 欄位。如遇此問題，聯絡賣家重新綁定。</td>
+    </tr>
+    <tr>
+        <td>OpenClaw 啟動失敗</td>
+        <td>Port 被占用</td>
+        <td>系統會自動掃描 18789-18799 找空閒 port。如果全部被占用，請關閉其他佔用的程式。</td>
+    </tr>
+    <tr>
+        <td>瀏覽器沒有自動開啟</td>
+        <td>瀏覽器路徑問題</td>
+        <td>手動開啟瀏覽器，輸入終端機中顯示的網址（如 http://127.0.0.1:18789）。</td>
+    </tr>
+    <tr>
+        <td>每 10 分鐘跳出警告</td>
+        <td>USB 被拔除或接觸不良</td>
+        <td>確認 USB 已穩固插入。如使用 Hub，改為直接插入電腦 USB 孔。</td>
+    </tr>
+</table>
+
+<h2 class="section-title">6.3　通訊頻道問題</h2>
+
+<table>
+    <tr><th style="width:25%">問題</th><th style="width:30%">可能原因</th><th style="width:45%">解決方法</th></tr>
+    <tr>
+        <td>LINE Bot 沒有回應</td>
+        <td>API Key 錯誤或 Webhook 未設定</td>
+        <td>確認 LINE Developers 後台的 Channel Access Token 正確，且 Webhook URL 已設定。</td>
+    </tr>
+    <tr>
+        <td>Telegram Bot 無回應</td>
+        <td>Bot Token 錯誤或 User ID 未授權</td>
+        <td>從 @BotFather 確認 Token，從 @userinfobot 確認 User ID，並在設定中更新。</td>
+    </tr>
+    <tr>
+        <td>Discord Bot 離線</td>
+        <td>Bot Token 失效或未邀請到伺服器</td>
+        <td>從 Discord Developer Portal 重新產生 Token，並確認 Bot 已加入目標伺服器。</td>
+    </tr>
+</table>
+
+<h2 class="section-title">6.4　效能與穩定性問題</h2>
+
+<table>
+    <tr><th style="width:25%">問題</th><th style="width:30%">可能原因</th><th style="width:45%">解決方法</th></tr>
+    <tr>
+        <td>AI 回應很慢</td>
+        <td>AI 服務端問題</td>
+        <td>嘗試切換到不同的 AI 提供者。Groq 回應速度通常最快。</td>
+    </tr>
+    <tr>
+        <td>Dashboard 打不開</td>
+        <td>Config Server 未啟動或 Port 被占用</td>
+        <td>從主選單 [7] 重新啟動。或手動開啟瀏覽器到 http://127.0.0.1:18788。</td>
+    </tr>
+    <tr>
+        <td>USB 讀取速度慢</td>
+        <td>使用 USB 2.0 或透過 Hub</td>
+        <td>改用 USB 3.0 孔（通常為藍色），避免使用 Hub 或延長線。</td>
+    </tr>
+</table>
+
+<p style="margin-top: 20px;">如果以上方法都無法解決您的問題，請將錯誤訊息截圖，寄到 <strong>3a01chatgpt@gmail.com</strong> 尋求技術支援。</p>
+
+<!-- ============================================================
+     附錄 A OpenClaw 常用操作速查表
+     ============================================================ -->
+<h1 class="chapter-title page-break">附錄 A　OpenClaw 常用操作速查表</h1>
+
+<p>以下為系統的常用操作整理。一般使用者透過主選單操作即可，此表供進階使用者參考。</p>
+
+<h3>主選單快捷鍵</h3>
+<table>
+    <tr><th style="width:20%">按鍵</th><th>功能</th></tr>
+    <tr><td><code>1</code></td><td>啟動 AI 助手（OpenClaw Gateway + 開啟瀏覽器）</td></tr>
+    <tr><td><code>2</code></td><td>安裝到本機（首次使用）</td></tr>
+    <tr><td><code>3</code></td><td>查看系統狀態</td></tr>
+    <tr><td><code>4</code></td><td>初始化 OpenClaw</td></tr>
+    <tr><td><code>5</code></td><td>設定 API Key / 通訊頻道 / 密碼</td></tr>
+    <tr><td><code>6</code></td><td>使用教學 / 80 個案例瀏覽器</td></tr>
+    <tr><td><code>7</code></td><td>Web 管理面板（Dashboard）</td></tr>
+    <tr><td><code>8</code></td><td>技能管理（安裝 / 移除 / ClawHub）</td></tr>
+    <tr><td><code>9</code></td><td>離開系統</td></tr>
+</table>
+
+<h3>Web 頁面速查</h3>
+<table>
+    <tr><th style="width:30%">頁面</th><th>開啟方式</th><th>用途</th></tr>
+    <tr><td><code>Welcome.html</code></td><td>雙擊 USB 上的檔案</td><td>快速上手指南、AI 模型推薦</td></tr>
+    <tr><td><code>Config.html</code></td><td>雙擊 USB 上的檔案</td><td>3 步設定嚮導（模型→金鑰→完成）</td></tr>
+    <tr><td><code>SkillHub.html</code></td><td>雙擊 USB 上的檔案</td><td>技能市場（搜尋、分類、安裝）</td></tr>
+    <tr><td>Dashboard</td><td>主選單 [7] 或 http://127.0.0.1:18788</td><td>即時系統管理面板</td></tr>
+    <tr><td>OpenClaw UI</td><td>主選單 [1] 或 http://127.0.0.1:18789</td><td>AI 對話介面</td></tr>
+</table>
+
+<h3>檔案結構</h3>
+<table>
+    <tr><th style="width:35%">路徑</th><th>說明</th></tr>
+    <tr><td><code>data/config.env</code></td><td>所有設定（API Key、通訊頻道等）</td></tr>
+    <tr><td><code>data/.openclaw/</code></td><td>OpenClaw 引擎設定和狀態</td></tr>
+    <tr><td><code>data/memory/</code></td><td>AI 持久記憶（跨對話保存）</td></tr>
+    <tr><td><code>skills/installed/</code></td><td>已安裝的 AI 技能</td></tr>
+    <tr><td><code>skills/import/</code></td><td>待匯入的技能（放入後從選單安裝）</td></tr>
+    <tr><td><code>examples/</code></td><td>80 個使用案例（8 大類 × 10 個）</td></tr>
+    <tr><td><code>app/core/</code></td><td>OpenClaw 引擎核心</td></tr>
+    <tr><td><code>app/runtime/</code></td><td>內建 Node.js（免安裝）</td></tr>
+</table>
+
+<!-- ============================================================
+     附錄 B AI 服務提供者費用比較表
+     ============================================================ -->
+<h1 class="chapter-title page-break">附錄 B　AI 服務提供者費用比較表</h1>
+
+<p>以下費用為 2026 年 3 月之估算，實際費用以各平台官方公告為準。</p>
+
+<table>
+    <tr><th>提供者</th><th>代表模型</th><th>約略費用</th><th>特色</th></tr>
+    <tr>
+        <td><strong>Groq</strong></td>
+        <td>Llama 3.3 70B</td>
+        <td>免費（有速率限制）</td>
+        <td>回應速度極快，入門首選</td>
+    </tr>
+    <tr>
+        <td><strong>DeepSeek</strong></td>
+        <td>DeepSeek-V3</td>
+        <td>比 OpenAI 便宜約 10 倍</td>
+        <td>性價比最高的付費方案</td>
+    </tr>
+    <tr>
+        <td><strong>Qwen</strong></td>
+        <td>Qwen-Max / Qwen-Plus</td>
+        <td>1000 次對話 &asymp; NT$60</td>
+        <td>最低成本付費方案</td>
+    </tr>
+    <tr>
+        <td><strong>OpenAI</strong></td>
+        <td>GPT-5 系列</td>
+        <td>較高</td>
+        <td>全球最知名 AI 品牌</td>
+    </tr>
+    <tr>
+        <td><strong>Anthropic</strong></td>
+        <td>Claude 4 系列</td>
+        <td>較高</td>
+        <td>擅長長文與推理</td>
+    </tr>
+    <tr>
+        <td><strong>Gemini</strong></td>
+        <td>Gemini 2.5 Flash/Pro</td>
+        <td>有免費額度</td>
+        <td>Google 生態整合</td>
+    </tr>
+    <tr>
+        <td><strong>OpenRouter</strong></td>
+        <td>多種模型</td>
+        <td>依選擇的模型</td>
+        <td>一個 Key 使用多家模型</td>
+    </tr>
+    <tr>
+        <td><strong>Mistral</strong></td>
+        <td>Mistral Large</td>
+        <td>中等</td>
+        <td>歐洲開源模型</td>
+    </tr>
+    <tr>
+        <td><strong>MiniMax</strong></td>
+        <td>MiniMax-01</td>
+        <td>中等</td>
+        <td>多模態（語音/影片/圖片生成）</td>
+    </tr>
+    <tr>
+        <td><strong>Ollama</strong></td>
+        <td>本地各種開源模型</td>
+        <td>完全免費</td>
+        <td>不需 API Key，需本地 GPU</td>
+    </tr>
+</table>
+
+<div class="box box-info">
+    <div class="box-title">省錢建議</div>
+    <p><strong>零成本方案：</strong>Groq（免費）= 完全不用錢就能開始<br>
+    <strong>經濟方案：</strong>Groq + DeepSeek = 每月不到 NT$50<br>
+    <strong>進階方案：</strong>Groq + OpenRouter = 按量付費，靈活選擇模型</p>
+</div>
+
+<!-- ============================================================
+     封底
+     ============================================================ -->
+<div class="back-cover">
+    <div class="back-cover-icon">&#x1F990;</div>
+    <div class="back-cover-title">隨身黃仁蝦AI系統</div>
+    <div class="back-cover-text">
+        OpenClaw Edition v2.0<br>
+        USB = 您的 AI 鑰匙 &bull; 本機 = 您的 AI 引擎<br><br>
+        <strong>Windows + Mac 跨平台 &bull; 3 秒即啟動 &bull; 不需 WSL</strong>
+    </div>
+    <div class="back-cover-copyright">
+        <strong>著作權所有 &copy; 2026 博碩圖書公司 / 曾慶良</strong><br>
+        本手冊受中華民國著作權法保護<br>
+        未經授權禁止以任何形式重製或散布<br>
+        違者將依法追究刑事及民事責任<br><br>
+        技術支援：3a01chatgpt@gmail.com
+    </div>
+</div>
+
+</body>
+</html>

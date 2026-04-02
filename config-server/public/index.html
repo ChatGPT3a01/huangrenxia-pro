@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隨身黃仁蝦AI系統 — 管理面板</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--bg4:#222;
+  --primary:#ff6b35;--primary-dim:#cc5529;
+  --text:#e0e0e0;--text2:#888;--text3:#555;
+  --success:#4caf50;--error:#f44336;--warn:#ffc107;--info:#2196f3;
+  --radius:10px;--radius-sm:8px;
+}
+body{font-family:-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Header */
+.header{background:var(--bg2);border-bottom:1px solid var(--bg4);padding:16px 32px;display:flex;align-items:center;gap:16px}
+.header .logo{font-size:28px}
+.header h1{font-size:20px;font-weight:600;color:var(--text)}
+.header .version{color:var(--text2);font-size:13px;margin-left:auto}
+
+/* Nav tabs */
+.nav{background:var(--bg2);border-bottom:1px solid var(--bg4);padding:0 32px;display:flex;gap:0}
+.nav button{background:none;border:none;color:var(--text2);padding:12px 20px;cursor:pointer;font-size:14px;border-bottom:2px solid transparent;transition:.2s}
+.nav button:hover{color:var(--text)}
+.nav button.active{color:var(--primary);border-bottom-color:var(--primary)}
+
+/* Main */
+.main{max-width:960px;margin:0 auto;padding:24px 32px}
+
+/* Cards */
+.card{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px;transition:.2s}
+.card:hover{border-color:var(--primary);transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,107,53,.08)}
+.card h3{font-size:15px;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card h3 .icon{font-size:18px}
+
+/* Status grid */
+.status-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.status-item{background:var(--bg2);border-radius:var(--radius-sm);padding:14px 16px}
+.status-item .label{font-size:12px;color:var(--text2);margin-bottom:4px}
+.status-item .value{font-size:16px;font-weight:600}
+.status-item .value.ok{color:var(--success)}
+.status-item .value.warn{color:var(--warn)}
+.status-item .value.err{color:var(--error)}
+.status-item .value.info{color:var(--info)}
+
+/* Form */
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;color:var(--text2);margin-bottom:4px}
+.form-group .hint{font-size:11px;color:var(--text3);margin-top:2px}
+.form-group input,.form-group select{width:100%;background:var(--bg);border:1px solid var(--bg4);border-radius:var(--radius-sm);padding:10px 12px;color:var(--text);font-size:14px;outline:none;transition:.2s}
+.form-group input:focus{border-color:var(--primary)}
+.form-group input::placeholder{color:var(--text3)}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border:none;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;font-weight:500;transition:.2s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dim)}
+.btn-secondary{background:var(--bg4);color:var(--text)}
+.btn-secondary:hover{background:#333}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);padding:12px 20px;color:var(--text);font-size:14px;transform:translateX(120%);transition:.3s;z-index:100}
+.toast.show{transform:translateX(0)}
+.toast.success{border-color:var(--success)}
+.toast.error{border-color:var(--error)}
+
+/* Sections */
+.section{display:none}
+.section.active{display:block}
+
+/* Key grid */
+.key-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.key-grid{grid-template-columns:1fr}}
+
+/* Log area */
+.log-area{background:var(--bg);border:1px solid var(--bg4);border-radius:var(--radius-sm);padding:12px;font-family:"Cascadia Code",Consolas,monospace;font-size:13px;color:var(--text2);max-height:300px;overflow-y:auto;white-space:pre-wrap}
+
+/* Refresh button */
+.refresh-btn{background:none;border:1px solid var(--bg4);border-radius:var(--radius-sm);color:var(--text2);padding:6px 12px;cursor:pointer;font-size:12px;transition:.2s}
+.refresh-btn:hover{border-color:var(--primary);color:var(--primary)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="logo">🦐</span>
+  <h1>隨身黃仁蝦AI系統</h1>
+  <span class="version">v2.0 | 作者：曾慶良 主任（阿亮老師）</span>
+</div>
+
+<div class="nav">
+  <button class="active" data-tab="dashboard">系統狀態</button>
+  <button data-tab="apikeys">API 金鑰</button>
+  <button data-tab="channels">通訊頻道</button>
+  <button data-tab="advanced">進階設定</button>
+</div>
+
+<div class="main">
+
+  <!-- Dashboard -->
+  <div class="section active" id="dashboard">
+    <div class="card">
+      <h3><span class="icon">📊</span> 系統狀態 <button class="refresh-btn" onclick="loadStatus()">重新整理</button></h3>
+      <div class="status-grid" id="statusGrid">
+        <div class="status-item"><div class="label">載入中...</div><div class="value info">--</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🔗</span> 快速連結</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-primary" id="openGatewayBtn" href="#" target="_blank">開啟 AI 助手</a>
+        <button class="btn btn-secondary" onclick="loadStatus()">重新整理狀態</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Keys -->
+  <div class="section" id="apikeys">
+    <div class="card">
+      <h3><span class="icon">🔑</span> AI 服務金鑰</h3>
+      <p style="color:var(--text2);font-size:13px;margin-bottom:16px">設定各 AI 模型供應商的 API Key。留空的供應商不會啟用。</p>
+      <div class="key-grid" id="keyGrid"></div>
+      <div style="margin-top:16px">
+        <button class="btn btn-primary" onclick="saveKeys()">儲存金鑰</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Channels -->
+  <div class="section" id="channels">
+    <div class="card">
+      <h3><span class="icon">💬</span> 通訊頻道設定</h3>
+      <p style="color:var(--text2);font-size:13px;margin-bottom:16px">設定 LINE、Telegram、Discord、WhatsApp 等通訊整合。</p>
+      <div id="channelForm"></div>
+      <div style="margin-top:16px">
+        <button class="btn btn-primary" onclick="saveChannels()">儲存頻道設定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advanced -->
+  <div class="section" id="advanced">
+    <div class="card">
+      <h3><span class="icon">⚙️</span> OpenClaw 設定</h3>
+      <div id="openclawForm">
+        <div class="form-group">
+          <label>Gateway Auth Token</label>
+          <input type="text" id="ocToken" placeholder="lobster">
+          <div class="hint">OpenClaw 連線驗證 token</div>
+        </div>
+        <div class="form-group">
+          <label>Gateway Port</label>
+          <input type="number" id="ocPort" placeholder="18789">
+          <div class="hint">預設 18789，若衝突可改為 18790-18799</div>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <button class="btn btn-primary" onclick="saveAdvanced()">儲存進階設定</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+const API = '';
+let rawConfig = {};
+
+// Tab navigation
+document.querySelectorAll('.nav button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+function toast(msg, type = 'success') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast show ' + type;
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+async function api(path, opts = {}) {
+  const res = await fetch(API + path, opts);
+  return res.json();
+}
+
+// Status
+async function loadStatus() {
+  try {
+    const { status } = await api('/api/status');
+    const grid = document.getElementById('statusGrid');
+    grid.innerHTML = `
+      <div class="status-item"><div class="label">Node.js</div><div class="value ${status.nodeInstalled?'ok':'err'}">${status.nodeInstalled?'已安裝':'未安裝'}</div></div>
+      <div class="status-item"><div class="label">OpenClaw</div><div class="value ${status.openclawInstalled?'ok':'err'}">${status.openclawInstalled?'已安裝':'未安裝'}</div></div>
+      <div class="status-item"><div class="label">Gateway</div><div class="value ${status.gatewayRunning?'ok':'warn'}">${status.gatewayRunning?'運行中 (port '+status.gatewayPort+')':'未啟動'}</div></div>
+      <div class="status-item"><div class="label">API Keys</div><div class="value info">${status.apiKeyCount} 個已設定</div></div>
+      <div class="status-item"><div class="label">安裝模式</div><div class="value">${status.installMode}</div></div>
+      <div class="status-item"><div class="label">引擎類型</div><div class="value">${status.engineType}</div></div>
+    `;
+    const btn = document.getElementById('openGatewayBtn');
+    btn.href = `http://127.0.0.1:${status.gatewayPort}/#token=lobster`;
+  } catch (e) {
+    toast('無法載入狀態: ' + e.message, 'error');
+  }
+}
+
+// Config
+const KEY_FIELDS = [
+  { key: 'GROQ_API_KEY', label: 'Groq', hint: '免費快速 — console.groq.com', color: '#ffc107' },
+  { key: 'DEEPSEEK_API_KEY', label: 'DeepSeek', hint: '極低價 — platform.deepseek.com', color: '#ffc107' },
+  { key: 'QWEN_API_KEY', label: 'Qwen', hint: '最便宜 — bailian.console.aliyun.com', color: '#ffc107' },
+  { key: 'OPENAI_API_KEY', label: 'OpenAI', hint: 'platform.openai.com/api-keys', color: '#4caf50' },
+  { key: 'ANTHROPIC_API_KEY', label: 'Anthropic', hint: 'console.anthropic.com', color: '#4caf50' },
+  { key: 'GEMINI_API_KEY', label: 'Gemini', hint: 'aistudio.google.com/apikey', color: '#4caf50' },
+  { key: 'OPENROUTER_API_KEY', label: 'OpenRouter', hint: '一 Key 多模型 — openrouter.ai', color: '#4caf50' },
+  { key: 'MISTRAL_API_KEY', label: 'Mistral', hint: 'console.mistral.ai', color: '#4caf50' },
+  { key: 'MINIMAX_API_KEY', label: 'MiniMax', hint: '語音/影片生成 — platform.minimaxi.com', color: '#4caf50' },
+  { key: 'OLLAMA_BASE_URL', label: 'Ollama URL', hint: '本地模型 — ollama.ai', color: '#2196f3' },
+];
+
+const CHANNEL_FIELDS = [
+  { key: 'LINE_CHANNEL_ID', label: 'LINE Channel ID', group: 'LINE' },
+  { key: 'LINE_CHANNEL_SECRET', label: 'LINE Channel Secret', group: 'LINE' },
+  { key: 'LINE_CHANNEL_ACCESS_TOKEN', label: 'LINE Access Token', group: 'LINE' },
+  { key: 'TELEGRAM_BOT_TOKEN', label: 'Telegram Bot Token', group: 'Telegram' },
+  { key: 'TELEGRAM_ALLOWED_USERS', label: 'Telegram User IDs', group: 'Telegram' },
+  { key: 'DISCORD_BOT_TOKEN', label: 'Discord Bot Token', group: 'Discord' },
+  { key: 'DISCORD_CHANNEL_ID', label: 'Discord Channel ID', group: 'Discord' },
+  { key: 'WHATSAPP_ENABLED', label: 'WhatsApp 啟用 (true/false)', group: 'WhatsApp' },
+];
+
+async function loadConfig() {
+  try {
+    const { raw } = await api('/api/config');
+    rawConfig = raw;
+
+    // Render key fields
+    const grid = document.getElementById('keyGrid');
+    grid.innerHTML = KEY_FIELDS.map(f => `
+      <div class="form-group">
+        <label style="color:${f.color}">${f.label}</label>
+        <input type="text" id="key_${f.key}" value="${raw[f.key]||''}" placeholder="${f.key.includes('URL')?'http://localhost:11434':'sk-...'}">
+        <div class="hint">${f.hint}</div>
+      </div>
+    `).join('');
+
+    // Render channel fields
+    const form = document.getElementById('channelForm');
+    let lastGroup = '';
+    let html = '';
+    for (const f of CHANNEL_FIELDS) {
+      if (f.group !== lastGroup) {
+        html += `<h4 style="color:var(--primary);margin:16px 0 8px;font-size:14px">${f.group}</h4>`;
+        lastGroup = f.group;
+      }
+      html += `<div class="form-group"><label>${f.label}</label><input type="text" id="ch_${f.key}" value="${raw[f.key]||''}"></div>`;
+    }
+    form.innerHTML = html;
+
+    // Advanced
+    document.getElementById('ocToken').value = raw.OPENCLAW_AUTH_TOKEN || 'lobster';
+    document.getElementById('ocPort').value = raw.OPENCLAW_PORT || '18789';
+  } catch (e) {
+    toast('無法載入設定: ' + e.message, 'error');
+  }
+}
+
+async function saveKeys() {
+  const updates = {};
+  for (const f of KEY_FIELDS) {
+    const val = document.getElementById('key_' + f.key).value.trim();
+    updates[f.key] = val;
+  }
+  try {
+    await api('/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ updates }) });
+    toast('金鑰已儲存');
+  } catch (e) { toast('儲存失敗: ' + e.message, 'error'); }
+}
+
+async function saveChannels() {
+  const updates = {};
+  for (const f of CHANNEL_FIELDS) {
+    updates[f.key] = document.getElementById('ch_' + f.key).value.trim();
+  }
+  try {
+    await api('/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ updates }) });
+    toast('頻道設定已儲存');
+  } catch (e) { toast('儲存失敗: ' + e.message, 'error'); }
+}
+
+async function saveAdvanced() {
+  const updates = {
+    OPENCLAW_AUTH_TOKEN: document.getElementById('ocToken').value.trim(),
+    OPENCLAW_PORT: document.getElementById('ocPort').value.trim(),
+  };
+  try {
+    await api('/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ updates }) });
+    toast('進階設定已儲存');
+  } catch (e) { toast('儲存失敗: ' + e.message, 'error'); }
+}
+
+// Init
+loadStatus();
+loadConfig();
+</script>
+</body>
+</html>

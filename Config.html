@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隨身黃仁蝦AI系統 — 設定嚮導</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--bg4:#222;--bg5:#333;
+  --primary:#ff6b35;--primary-dim:#cc5529;--primary-bg:rgba(255,107,53,.08);
+  --text:#e0e0e0;--text2:#888;--text3:#555;
+  --success:#4caf50;--error:#f44336;--warn:#ffc107;--info:#2196f3;
+  --radius:10px;--radius-sm:8px;
+}
+body{font-family:-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;justify-content:center;padding:40px 20px}
+a{color:var(--primary);text-decoration:none}
+
+.container{max-width:680px;width:100%}
+
+/* Header */
+.header{text-align:center;margin-bottom:32px}
+.header .logo{font-size:48px;margin-bottom:8px}
+.header h1{font-size:22px;font-weight:600}
+.header .sub{color:var(--text2);font-size:13px;margin-top:6px}
+.header .author{color:var(--text3);font-size:12px;margin-top:8px}
+.header .author a{color:var(--primary);font-size:12px}
+
+/* Step tabs */
+.tabs{display:flex;justify-content:center;gap:32px;margin-bottom:28px;position:relative}
+.tabs::before{content:'';position:absolute;top:15px;left:50%;transform:translateX(-50%);width:260px;height:2px;background:var(--bg5)}
+.tab{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;position:relative;z-index:1}
+.tab .num{width:32px;height:32px;border-radius:50%;background:var(--bg5);color:var(--text3);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;transition:.3s}
+.tab .label{font-size:12px;color:var(--text3);transition:.3s}
+.tab.active .num{background:var(--primary);color:#fff}
+.tab.active .label{color:var(--primary)}
+.tab.done .num{background:var(--success);color:#fff}
+.tab.done .label{color:var(--success)}
+
+/* Panels */
+.panel{display:none}
+.panel.active{display:block}
+
+/* Cards */
+.card{background:var(--bg3);border:1px solid var(--bg5);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px}
+.card h3{font-size:15px;margin-bottom:12px}
+
+/* Model grid */
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.model-card{background:var(--bg4);border:2px solid var(--bg5);border-radius:var(--radius-sm);padding:14px;cursor:pointer;transition:.2s}
+.model-card:hover{border-color:var(--text3);transform:translateY(-1px)}
+.model-card.selected{border-color:var(--primary);background:var(--primary-bg)}
+.model-card .name{font-size:14px;font-weight:600;margin-bottom:2px}
+.model-card .tags{margin-bottom:4px}
+.model-card .tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:4px}
+.model-card .tag.rec{background:#ff6b35;color:#fff}
+.model-card .tag.free{background:#4caf50;color:#fff}
+.model-card .tag.cheap{background:#2196f3;color:#fff}
+.model-card .tag.local{background:#9c27b0;color:#fff}
+.model-card .desc{font-size:12px;color:var(--text2)}
+.model-card .link{font-size:11px;color:var(--primary);margin-top:4px;display:block}
+
+/* Form */
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;color:var(--text2);margin-bottom:4px}
+.form-group .hint{font-size:11px;color:var(--text3);margin-top:3px}
+.form-group input{width:100%;background:var(--bg);border:1px solid var(--bg5);border-radius:var(--radius-sm);padding:10px 12px;color:var(--text);font-size:14px;outline:none;transition:.2s}
+.form-group input:focus{border-color:var(--primary)}
+.form-group input::placeholder{color:var(--text3)}
+.pw-wrap{position:relative}
+.pw-wrap .toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border:none;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;font-weight:500;transition:.2s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dim)}
+.btn-secondary{background:var(--bg5);color:var(--text)}
+.btn-secondary:hover{background:#444}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-row{display:flex;gap:12px;margin-top:20px;justify-content:flex-end}
+
+/* Channel accordion */
+.channel{margin-bottom:10px}
+.channel-header{background:var(--bg4);border:1px solid var(--bg5);border-radius:var(--radius-sm);padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:14px;transition:.2s}
+.channel-header:hover{border-color:var(--text3)}
+.channel-body{max-height:0;overflow:hidden;transition:max-height .3s;padding:0 16px}
+.channel-body.open{max-height:400px;padding:12px 16px}
+
+/* Success */
+.success-box{text-align:center;padding:32px}
+.success-box .icon{font-size:64px;margin-bottom:16px}
+.success-box h2{font-size:22px;margin-bottom:8px;color:var(--success)}
+.success-box p{color:var(--text2);font-size:14px;margin-bottom:6px}
+.success-box .url{font-size:16px;color:var(--primary);font-weight:600;margin:16px 0}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg3);border:1px solid var(--success);border-radius:var(--radius-sm);padding:12px 20px;color:var(--text);font-size:14px;transform:translateX(120%);transition:.3s;z-index:100}
+.toast.show{transform:translateX(0)}
+.toast.error{border-color:var(--error)}
+
+/* Footer */
+.footer{text-align:center;color:var(--text3);font-size:12px;margin-top:24px}
+
+@media(max-width:500px){.model-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="logo">🦐</div>
+  <h1>隨身黃仁蝦AI系統</h1>
+  <div class="sub">設定嚮導 — 三步完成配置</div>
+  <div class="author">
+    作者：曾慶良 主任（阿亮老師）｜<a href="mailto:3a01chatgpt@gmail.com">3a01chatgpt@gmail.com</a>
+  </div>
+</div>
+
+<!-- Step Tabs -->
+<div class="tabs">
+  <div class="tab active" data-step="1" onclick="goStep(1)">
+    <div class="num">1</div>
+    <div class="label">選模型</div>
+  </div>
+  <div class="tab" data-step="2" onclick="goStep(2)">
+    <div class="num">2</div>
+    <div class="label">填 Key</div>
+  </div>
+  <div class="tab" data-step="3" onclick="goStep(3)">
+    <div class="num">3</div>
+    <div class="label">完成</div>
+  </div>
+</div>
+
+<!-- Step 1: Choose Model -->
+<div class="panel active" id="step1">
+  <div class="card">
+    <h3>選擇 AI 模型供應商</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">點擊選擇你要使用的 AI。可以之後隨時修改。</p>
+    <div class="model-grid" id="modelGrid"></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-primary" id="nextBtn1" disabled onclick="goStep(2)">下一步</button>
+  </div>
+</div>
+
+<!-- Step 2: Enter API Key -->
+<div class="panel" id="step2">
+  <div class="card">
+    <h3 id="keyTitle">填入 API Key</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Key 僅保存在本機，不會上傳到任何伺服器。</p>
+    <div id="keyForm"></div>
+  </div>
+
+  <div class="card">
+    <h3>通訊頻道（選填）</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">不需要的直接跳過，之後也可設定。</p>
+    <div id="channelList">
+      <div class="channel">
+        <div class="channel-header" onclick="toggleChannel(this)">LINE <span>+</span></div>
+        <div class="channel-body">
+          <div class="form-group"><label>Channel ID</label><input type="text" id="ch_LINE_CHANNEL_ID" placeholder="LINE Channel ID"></div>
+          <div class="form-group"><label>Channel Secret</label><input type="text" id="ch_LINE_CHANNEL_SECRET" placeholder="LINE Channel Secret"></div>
+          <div class="form-group"><label>Access Token</label><input type="text" id="ch_LINE_CHANNEL_ACCESS_TOKEN" placeholder="LINE Access Token"></div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-header" onclick="toggleChannel(this)">Telegram <span>+</span></div>
+        <div class="channel-body">
+          <div class="form-group"><label>Bot Token</label><input type="text" id="ch_TELEGRAM_BOT_TOKEN" placeholder="Telegram Bot Token"></div>
+          <div class="form-group"><label>Allowed User IDs</label><input type="text" id="ch_TELEGRAM_ALLOWED_USERS" placeholder="逗號分隔 User ID"></div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-header" onclick="toggleChannel(this)">Discord <span>+</span></div>
+        <div class="channel-body">
+          <div class="form-group"><label>Bot Token</label><input type="text" id="ch_DISCORD_BOT_TOKEN" placeholder="Discord Bot Token"></div>
+          <div class="form-group"><label>Channel ID</label><input type="text" id="ch_DISCORD_CHANNEL_ID" placeholder="Discord Channel ID"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="goStep(1)">上一步</button>
+    <button class="btn btn-primary" onclick="saveConfig()">儲存設定</button>
+  </div>
+</div>
+
+<!-- Step 3: Done -->
+<div class="panel" id="step3">
+  <div class="card">
+    <div class="success-box">
+      <div class="icon">🦐</div>
+      <h2>設定完成！</h2>
+      <p>你的 AI 助手已準備就緒</p>
+      <div class="url">http://127.0.0.1:18789</div>
+      <p style="color:var(--text3);font-size:12px">啟動後瀏覽器會自動開啟此頁面</p>
+      <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary" href="http://127.0.0.1:18789/#token=lobster" target="_blank" style="text-decoration:none">開啟 AI 助手</a>
+        <a class="btn btn-secondary" href="http://127.0.0.1:18788/" target="_blank" style="text-decoration:none">管理面板</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>接下來...</h3>
+    <ul style="list-style:none;padding:0;font-size:14px;color:var(--text2)">
+      <li style="padding:6px 0">📂 <strong>技能目錄</strong>：<code style="color:var(--primary)">skills/installed/</code> — 安裝的技能包</li>
+      <li style="padding:6px 0">🧠 <strong>記憶系統</strong>：<code style="color:var(--primary)">data/memory/</code> — AI 的長期記憶</li>
+      <li style="padding:6px 0">📖 <strong>使用案例</strong>：<code style="color:var(--primary)">examples/</code> — 80 個使用範例</li>
+    </ul>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="goStep(2)">返回修改</button>
+  </div>
+</div>
+
+<div class="footer">
+  © 2026 阿亮老師（曾慶良）版權所有 | 隨身黃仁蝦AI系統 v2.0
+</div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Model definitions
+const MODELS = [
+  { id:'groq', name:'Groq', tags:[{t:'免費',c:'free'},{t:'推薦',c:'rec'}], desc:'速度極快，有免費額度', key:'GROQ_API_KEY', url:'https://console.groq.com' },
+  { id:'deepseek', name:'DeepSeek', tags:[{t:'超便宜',c:'cheap'}], desc:'中文能力強，價格極低', key:'DEEPSEEK_API_KEY', url:'https://platform.deepseek.com' },
+  { id:'qwen', name:'Qwen（通義千問）', tags:[{t:'最便宜',c:'cheap'}], desc:'1000 次對話約 60 台幣', key:'QWEN_API_KEY', url:'https://bailian.console.aliyun.com' },
+  { id:'openrouter', name:'OpenRouter', tags:[{t:'多合一',c:'rec'}], desc:'一個 Key 用遍所有模型', key:'OPENROUTER_API_KEY', url:'https://openrouter.ai' },
+  { id:'openai', name:'OpenAI', tags:[], desc:'GPT-4o / GPT-5 系列', key:'OPENAI_API_KEY', url:'https://platform.openai.com/api-keys' },
+  { id:'anthropic', name:'Anthropic', tags:[], desc:'Claude 系列，程式碼能力頂尖', key:'ANTHROPIC_API_KEY', url:'https://console.anthropic.com' },
+  { id:'gemini', name:'Gemini', tags:[], desc:'Google 出品，多模態能力強', key:'GEMINI_API_KEY', url:'https://aistudio.google.com/apikey' },
+  { id:'mistral', name:'Mistral', tags:[], desc:'歐洲開源，品質優秀', key:'MISTRAL_API_KEY', url:'https://console.mistral.ai' },
+  { id:'minimax', name:'MiniMax', tags:[], desc:'語音、影片生成突出', key:'MINIMAX_API_KEY', url:'https://platform.minimaxi.com' },
+  { id:'ollama', name:'Ollama', tags:[{t:'免費本地',c:'local'}], desc:'在自己電腦跑模型', key:'OLLAMA_BASE_URL', url:'https://ollama.ai', isUrl:true },
+];
+
+let selectedModel = null;
+const API_BASE = 'http://127.0.0.1:18788';
+
+// Render model grid
+const grid = document.getElementById('modelGrid');
+grid.innerHTML = MODELS.map(m => `
+  <div class="model-card" data-id="${m.id}" onclick="selectModel('${m.id}')">
+    <div class="name">${m.name}</div>
+    <div class="tags">${m.tags.map(t=>`<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
+    <div class="desc">${m.desc}</div>
+    <a class="link" href="${m.url}" target="_blank" onclick="event.stopPropagation()">取得 API Key →</a>
+  </div>
+`).join('');
+
+function selectModel(id) {
+  selectedModel = MODELS.find(m => m.id === id);
+  document.querySelectorAll('.model-card').forEach(c => c.classList.toggle('selected', c.dataset.id === id));
+  document.getElementById('nextBtn1').disabled = false;
+}
+
+function goStep(n) {
+  // Update tabs
+  document.querySelectorAll('.tab').forEach(t => {
+    const s = parseInt(t.dataset.step);
+    t.classList.remove('active','done');
+    if (s < n) t.classList.add('done');
+    if (s === n) t.classList.add('active');
+  });
+  // Update panels
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('step' + n).classList.add('active');
+
+  // Render step 2 form based on selection
+  if (n === 2 && selectedModel) {
+    const form = document.getElementById('keyForm');
+    document.getElementById('keyTitle').textContent = `填入 ${selectedModel.name} API Key`;
+    if (selectedModel.isUrl) {
+      form.innerHTML = `
+        <div class="form-group">
+          <label>Ollama Base URL</label>
+          <input type="text" id="apiKeyInput" placeholder="http://localhost:11434" value="http://localhost:11434">
+          <div class="hint">通常不需修改，除非 Ollama 跑在其他機器上</div>
+        </div>`;
+    } else {
+      form.innerHTML = `
+        <div class="form-group">
+          <label>${selectedModel.name} API Key</label>
+          <div class="pw-wrap">
+            <input type="password" id="apiKeyInput" placeholder="sk-...">
+            <button class="toggle" onclick="togglePw()">👁</button>
+          </div>
+          <div class="hint">前往 <a href="${selectedModel.url}" target="_blank">${selectedModel.url}</a> 取得</div>
+        </div>`;
+    }
+  }
+}
+
+function togglePw() {
+  const inp = document.getElementById('apiKeyInput');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function toggleChannel(el) {
+  const body = el.nextElementSibling;
+  const isOpen = body.classList.toggle('open');
+  el.querySelector('span').textContent = isOpen ? '−' : '+';
+}
+
+function toast(msg, isError) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast show' + (isError ? ' error' : '');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+async function saveConfig() {
+  if (!selectedModel) { toast('請先選擇模型', true); return; }
+  const key = document.getElementById('apiKeyInput')?.value?.trim();
+  if (!key) { toast('請填入 API Key', true); return; }
+
+  const updates = {};
+  updates[selectedModel.key] = key;
+
+  // Collect channel values
+  const chFields = ['LINE_CHANNEL_ID','LINE_CHANNEL_SECRET','LINE_CHANNEL_ACCESS_TOKEN',
+    'TELEGRAM_BOT_TOKEN','TELEGRAM_ALLOWED_USERS','DISCORD_BOT_TOKEN','DISCORD_CHANNEL_ID'];
+  for (const f of chFields) {
+    const el = document.getElementById('ch_' + f);
+    if (el && el.value.trim()) updates[f] = el.value.trim();
+  }
+
+  // Try saving via config-server API
+  try {
+    const res = await fetch(API_BASE + '/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ updates })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      toast('設定已儲存！');
+      goStep(3);
+    } else {
+      throw new Error(data.error || 'Unknown error');
+    }
+  } catch (e) {
+    // If config-server not running, show manual instructions
+    toast('無法連線管理面板。請確認已啟動系統，或手動編輯 data/config.env', true);
+    console.error(e);
+
+    // Still show step 3 with instructions
+    goStep(3);
+  }
+}
+
+// Try loading existing config on page load
+(async () => {
+  try {
+    const res = await fetch(API_BASE + '/api/config');
+    const { raw } = await res.json();
+    // Pre-fill channel fields
+    const chFields = ['LINE_CHANNEL_ID','LINE_CHANNEL_SECRET','LINE_CHANNEL_ACCESS_TOKEN',
+      'TELEGRAM_BOT_TOKEN','TELEGRAM_ALLOWED_USERS','DISCORD_BOT_TOKEN','DISCORD_CHANNEL_ID'];
+    for (const f of chFields) {
+      const el = document.getElementById('ch_' + f);
+      if (el && raw[f]) el.value = raw[f];
+    }
+    // Auto-select model if already configured
+    for (const m of MODELS) {
+      if (raw[m.key]) { selectModel(m.id); break; }
+    }
+  } catch {}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隨身黃仁蝦AI系統 — 快速上手</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+  background:linear-gradient(135deg,#ff6b35 0%,#c0392b 50%,#2c3e50 100%);
+  min-height:100vh;padding:40px 20px;color:#333;
+}
+.container{max-width:700px;margin:0 auto}
+.card{background:#fff;border-radius:16px;padding:40px;margin-bottom:24px;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.header{text-align:center;margin-bottom:32px}
+.header .logo{font-size:64px;margin-bottom:12px}
+.header h1{font-size:28px;font-weight:700;color:#2c3e50}
+.header .subtitle{color:#666;font-size:15px;margin-top:8px}
+.header .author{color:#999;font-size:13px;margin-top:12px}
+.header .author a{color:#ff6b35;text-decoration:none}
+
+/* Steps */
+.steps{counter-reset:step}
+.step{position:relative;padding:20px 20px 20px 60px;margin-bottom:16px;border-left:4px solid #ff6b35;border-radius:0 8px 8px 0;background:#fef9f5;transition:.2s}
+.step:hover{background:#fff3ec}
+.step::before{
+  counter-increment:step;content:counter(step);
+  position:absolute;left:-18px;top:20px;
+  width:32px;height:32px;border-radius:50%;
+  background:#ff6b35;color:#fff;font-weight:700;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.step h3{font-size:16px;color:#2c3e50;margin-bottom:6px}
+.step p{font-size:14px;color:#555;line-height:1.6}
+.step code{background:#f0f0f0;padding:2px 8px;border-radius:4px;font-size:13px;color:#c0392b}
+
+/* Tips */
+.tip{background:#fff8e1;border-left:4px solid #ffc107;border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0;font-size:14px;color:#5d4037}
+.tip-green{background:#e8f5e9;border-left-color:#4caf50;color:#2e7d32}
+.tip strong{font-weight:600}
+
+/* Model grid */
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.model-item{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:12px;font-size:13px}
+.model-item .name{font-weight:600;color:#2c3e50}
+.model-item .tag{display:inline-block;background:#ff6b35;color:#fff;padding:1px 6px;border-radius:4px;font-size:11px;margin-left:4px}
+.model-item .tag.free{background:#4caf50}
+.model-item .tag.cheap{background:#2196f3}
+.model-item .desc{color:#777;font-size:12px;margin-top:4px}
+
+/* Links */
+.links{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;justify-content:center}
+.links a{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#ff6b35;color:#fff;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;transition:.2s}
+.links a:hover{background:#e55a2b;transform:translateY(-1px)}
+.links a.secondary{background:#2c3e50}
+.links a.secondary:hover{background:#34495e}
+
+/* Footer */
+.footer{text-align:center;color:rgba(255,255,255,.7);font-size:13px;margin-top:16px}
+.footer a{color:rgba(255,255,255,.9)}
+
+@media(max-width:500px){
+  .model-grid{grid-template-columns:1fr}
+  .card{padding:24px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="card">
+    <div class="header">
+      <div class="logo">🦐</div>
+      <h1>隨身黃仁蝦AI系統</h1>
+      <div class="subtitle">Windows Key Edition v2.0 — OpenClaw 驅動</div>
+      <div class="author">
+        作者：曾慶良 主任（阿亮老師）｜
+        <a href="mailto:3a01chatgpt@gmail.com">3a01chatgpt@gmail.com</a>｜
+        <a href="https://www.youtube.com/@Liang-yt02" target="_blank">YouTube</a>
+      </div>
+    </div>
+
+    <h2 style="font-size:18px;margin-bottom:16px;color:#2c3e50">三步開始使用</h2>
+
+    <div class="steps">
+      <div class="step">
+        <h3>啟動服務</h3>
+        <p>
+          <strong>Windows：</strong>插入 USB，雙擊 <code>點這個啟動-隨身黃仁蝦AI-Windows.bat</code><br>
+          <strong>Mac：</strong>插入 USB，雙擊 <code>Mac-啟動.command</code>
+        </p>
+      </div>
+      <div class="step">
+        <h3>設定 AI 模型</h3>
+        <p>
+          開啟 <code>Config.html</code> 或從主選單選「設定 API Key」。<br>
+          選擇你想用的 AI 供應商，填入 API Key 即可。
+        </p>
+      </div>
+      <div class="step">
+        <h3>開始對話</h3>
+        <p>
+          啟動後瀏覽器會自動開啟 <code>http://127.0.0.1:18789</code>。<br>
+          你的 AI 助手已就緒，開始提問吧！
+        </p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>重要觀念：</strong>USB = 身份鑰匙（認證用），電腦 = AI 主機（運算用）。啟動時必須插著 USB。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:18px;margin-bottom:16px;color:#2c3e50">推薦 AI 模型</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:12px">不知道選哪個？以下是我們的推薦：</p>
+
+    <div class="model-grid">
+      <div class="model-item">
+        <div class="name">Groq <span class="tag free">免費</span></div>
+        <div class="desc">速度極快，有免費額度，適合入門</div>
+      </div>
+      <div class="model-item">
+        <div class="name">DeepSeek <span class="tag cheap">超便宜</span></div>
+        <div class="desc">比 OpenAI 便宜 10 倍，中文能力強</div>
+      </div>
+      <div class="model-item">
+        <div class="name">Qwen <span class="tag cheap">最便宜</span></div>
+        <div class="desc">1000 次對話約 60 台幣</div>
+      </div>
+      <div class="model-item">
+        <div class="name">OpenRouter <span class="tag">多合一</span></div>
+        <div class="desc">一個 Key 可用所有模型</div>
+      </div>
+      <div class="model-item">
+        <div class="name">OpenAI</div>
+        <div class="desc">GPT-4o / GPT-5 系列，最知名</div>
+      </div>
+      <div class="model-item">
+        <div class="name">Gemini</div>
+        <div class="desc">Google 出品，多模態能力強</div>
+      </div>
+      <div class="model-item">
+        <div class="name">Anthropic</div>
+        <div class="desc">Claude 系列，程式碼能力頂尖</div>
+      </div>
+      <div class="model-item">
+        <div class="name">MiniMax</div>
+        <div class="desc">語音、影片生成能力突出</div>
+      </div>
+      <div class="model-item">
+        <div class="name">Mistral</div>
+        <div class="desc">歐洲開源模型，品質優秀</div>
+      </div>
+      <div class="model-item">
+        <div class="name">Ollama <span class="tag free">免費本地</span></div>
+        <div class="desc">在自己電腦跑模型，完全離線</div>
+      </div>
+    </div>
+
+    <div class="tip-green tip">
+      <strong>新手推薦：</strong>先申請 Groq（免費）試用，覺得不錯再考慮付費的 DeepSeek 或 Qwen。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:18px;margin-bottom:16px;color:#2c3e50">常見問題</h2>
+
+    <div class="step" style="border-left-color:#2196f3;background:#f3f8ff">
+      <h3>啟動失敗怎麼辦？</h3>
+      <p>確認 USB 有插著，然後從主選單選「查看 OpenClaw 狀態」檢查。</p>
+    </div>
+    <div class="step" style="border-left-color:#2196f3;background:#f3f8ff">
+      <h3>如何更換 AI 模型？</h3>
+      <p>從主選單選「設定（API Key / 通訊頻道 / 密碼）」，或開啟 <code>Config.html</code>。</p>
+    </div>
+    <div class="step" style="border-left-color:#2196f3;background:#f3f8ff">
+      <h3>可以接 LINE / Telegram 嗎？</h3>
+      <p>可以！在首次設定或主選單的「設定」中填入通訊頻道資訊即可。</p>
+    </div>
+
+    <div class="links">
+      <a href="Config.html">前往設定頁面</a>
+      <a href="https://www.youtube.com/@Liang-yt02" target="_blank" class="secondary">YouTube 教學</a>
+      <a href="https://www.facebook.com/groups/2754139931432955" target="_blank" class="secondary">FB 社團</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  © 2026 阿亮老師（曾慶良）版權所有 | 隨身黃仁蝦AI系統 v2.0
+</div>
+</body>
+</html>
